@@ -1,0 +1,38 @@
+cls
+@ECHO OFF
+title Odon - Pengunci Folder - 
+if EXIST "rahasiaa.{59031a47-3f72-44a7-89c5-5595fe6b30ee}" goto BUKA
+if NOT EXIST rahasiaa goto BUATLOCKER
+:KONFIRMASI
+echo Anda yakin mau mengunci folder ? (Y/T)
+set/p "cho=> "
+if %cho%==Y goto KUNCI
+if %cho%==y goto KUNCI
+if %cho%==t goto AKHIR
+if %cho%==T goto AKHIR
+echo Pilihan Anda salah. Hanya Y/T !
+echo .
+goto KONFIRMASI
+:KUNCI
+ren rahasiaa "rahasiaa.{59031a47-3f72-44a7-89c5-5595fe6b30ee}"
+attrib +h +s "rahasiaa.{59031a47-3f72-44a7-89c5-5595fe6b30ee}"
+echo Folder telah terkunci.
+goto AKHIR
+:BUKA
+echo Masukkan password untuk membuka folder rahasia
+set/p "pass=> "
+if NOT %pass%== 120174 goto GAGAL
+attrib -h -s "rahasiaa.{59031a47-3f72-44a7-89c5-5595fe6b30ee}"
+ren "rahasiaa.{59031a47-3f72-44a7-89c5-5595fe6b30ee}" rahasiaa
+START rahasiaa
+echo Folder rahasia berhasil dibuka  Horee!
+goto AKHIR
+:GAGAL
+echo Password salah!
+goto AKHIR
+:BUATLOCKER
+md rahasiaa
+echo Folder rahasia berhasil dibuat!
+goto AKHIR
+:AKHIR
+af
